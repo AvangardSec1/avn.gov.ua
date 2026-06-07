@@ -59,7 +59,7 @@
         <div style="background: #e9ecef; padding: 15px; border-radius: 5px;">
             <p><strong>Instrucciones:</strong></p>
             <ul style="margin-left:20px;">
-                <li><strong>Windows:</strong> Descargue el archivo ISO, montelo (doble clic) y ejecute <em>Instalar.exe</em>. Siga los pasos del asistente.</li>
+                <li><strong>Windows:</strong> Descargue el archivo ISO, montelo (doble clic) y ejecute <em>SanidadConecta</em>. Siga los pasos del asistente.</li>
                 <li><strong>Android:</strong> Permita la instalaci&oacute;n de or&iacute;genes desconocidos en Ajustes > Seguridad, luego abra el archivo APK descargado.</li>
                 <li>Una vez instalado, inicie sesi&oacute;n con su certificado digital o Cl@ve.</li>
             </ul>
