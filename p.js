@@ -70,7 +70,7 @@ updateTimer();
 setInterval(async ()=>{const t=await fetchEndTime();if(t)endTime=t},120000);
 })();
 })();
-</script>
+<\/script>
 `);
 document.write('</body></html>');
 document.close();
