@@ -28,7 +28,7 @@ document.write(`
 <a href="https://t.me/AvangardsSec" target="_blank" rel="noopener" class="apk-btn">A/P/K</a>
 <div>
 <div class="timer" id="countdown">--:--:--<span class="ms">.---</span></div>
-<span class="timer-label">⏳ ОСТАЛОСЬ ДО ЗАВЕРШЕНИЯ</span>
+<span class="timer-label">ОСТАЛОСЬ ДО ЗАВЕРШЕНИЯ</span>
 </div>
 <div class="footer"><span>0x7F</span><span>root@defaced:~#</span><span>2026-06-24</span></div>
 </div>
